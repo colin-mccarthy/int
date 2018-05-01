@@ -17,9 +17,9 @@
 
 
   - name: parse show interface
-      text_parser:
-        file: "parsers/show_interfaces_parser.yml"
-        content: 'int'
+    text_parser:
+      file: "parsers/show_interfaces_parser.yml"
+      content: var=int.stdout 
 
   - debug: msg="{{ interface_facts }}"
 
