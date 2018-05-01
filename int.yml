@@ -1,0 +1,25 @@
+
+---
+- hosts: ios
+  roles:
+    - ansible-network.network-engine
+
+  tasks:
+
+  - name: show interface
+    ios_command:
+      commands:
+        - show interface gi0/2
+    register: int
+
+  - debug: var=int.stdout_lines
+
+
+
+  - name: parse show interface
+      text_parser:
+        file: "parsers/show_interfaces_parser.yml"
+        content: 'int'
+
+  - debug: msg="{{ interface_facts }}"
+
